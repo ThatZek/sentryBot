@@ -4,6 +4,7 @@ const client = new Discord.Client();
 const fetch = require('node-fetch')
 const config = require("./config.json")
 const v = require('./verify.js')
+const l = require('./log.js');
 
 module.exports = {
     client: client
@@ -30,12 +31,13 @@ client.on('message', msg => {
     let command = msg.content.toLowerCase();
     if (command === prefix + 'ping') {
         msg.reply('!Pong!');
-    } else if (command.startsWith(prefix + 'promote')) {
+    } else if (command.startsWith(prefix + 'trial')) {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
             let role = msg.guild.roles.get("431950915419897866");
             if (!person.roles.has(role)) {
                 person.addRole(role)
+                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout') 
                 msg.react('✅')
             } else {
                 msg.reply(' That person already is a scout!')
@@ -49,6 +51,7 @@ client.on('message', msg => {
             const person = msg.mentions.members.first();
             if (person.roles.has('')) {
                 person.removeRole(role)
+                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout')
                 msg.react('✅')
             } else {
                 msg.reply(' That person isnt a scout!')
