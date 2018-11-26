@@ -30,7 +30,7 @@ client.on('ready', () => {
 //commands
 client.on('message', msg => {
     if (!msg.content.startsWith(prefix) || msge.author.bot) return;
-    const args = msg.content.slice(prefix.length).tol.split(/ +/);
+    const args = msg.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if (command === prefix + 'ping') {
         msg.reply('Pong!');
