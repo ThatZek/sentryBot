@@ -7,6 +7,7 @@ const client = bot.client
 
 var ban = config.Banlog
 var promote = config.Promotelog
+var verify = config.Verifylog
 
 module.exports = {
     log: function log(type, msg) {

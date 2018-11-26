@@ -5,6 +5,7 @@ const fetch = require('node-fetch')
 const config = require("./config.json")
 const v = require('./verify.js')
 const l = require('./log.js');
+const sentry = require('./sentry.js')
 
 module.exports = {
     client: client
@@ -28,16 +29,18 @@ client.on('ready', () => {
 
 //commands
 client.on('message', msg => {
-    let command = msg.content.toLowerCase();
+    if (!msg.content.startsWith(prefix) || msge.author.bot) return;
+    const args = msg.content.slice(prefix.length).tol.split(/ +/);
+    const command = args.shift().toLowerCase();
     if (command === prefix + 'ping') {
-        msg.reply('!Pong!');
-    } else if (command.startsWith(prefix + 'trial')) {
+        msg.reply('Pong!');
+    } else if (command.startsWith('trial')) {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
             let role = msg.guild.roles.get("431950915419897866");
             if (!person.roles.has(role)) {
                 person.addRole(role)
-                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout') 
+                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout')
                 msg.react('✅')
             } else {
                 msg.reply(' That person already is a scout!')
@@ -45,7 +48,7 @@ client.on('message', msg => {
         } else {
             msg.reply(' You need to mention someone!')
         }
-    } else if (command.startsWith(prefix + 'demote')) {
+    } else if (command.startsWith('demote')) {
         if (msg.mentions.members.first() !== undefined) {
             let role = msg.guild.roles.get("431950915419897866");
             const person = msg.mentions.members.first();
@@ -64,6 +67,9 @@ client.on('message', msg => {
             v.verify(msg.author, msg.guild, msg.member)
         }
         msg.delete()
+    } else if (command === 'sentry') {
+        //sentry.newsentry(args, msg)
+        msg.reply('In development stages')
     }
 });
 
