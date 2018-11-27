@@ -59,9 +59,15 @@ client.on('message', msg => {
         }
     } else if (command === 'demote') {
         if (msg.mentions.members.first() !== undefined) {
-            let role = msg.guild.roles.get("431950915419897866");
+            let role = null;
             const person = msg.mentions.members.first();
-            if (person.roles.has('')) {
+            if (person.roles.has('431950915419897866')) {
+                role = msg.guild.roles.get("431950915419897866");
+                person.removeRole(role)
+                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
+                msg.react('✅')
+            } else if (person.roles.has('431946137071648768')) {
+                role = msg.guild.roles.get("431950915419897866");
                 person.removeRole(role)
                 l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
                 msg.react('✅')
