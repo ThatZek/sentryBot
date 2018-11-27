@@ -31,21 +31,23 @@ module.exports = {
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>', client)
+                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
                                 } else if (json.description[1] = string) {
                                     collector.stop();
                                     member.addRole(server.roles.get(veriRole))
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>', client)
+                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
                                 } else if (json.description[2] = string) {
                                     collector.stop();
                                     member.addRole(server.roles.get(veriRole))
                                     member.setNickname(username)
                                         .catch(console.error);
-                                    msg.channel.send('You are now verified! Their Realmeye: https://www.realmeye.com/player/' + username)
-                                    l.log('verify', user + ' has been successfully verified!', client)
+                                    msg.channel.send('You are now verified!')
+                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
+                                } else {
+                                    l.log('verify', user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username, client)
                                 }
                             })
                     });
