@@ -43,13 +43,13 @@ client.on('message', msg => {
     const command = args.shift().toLowerCase();
     if (command === 'ping') {
         msg.reply('Pong!');
-    } else if (command.startsWith('trial')) {
+    } else if (command === 'trial') {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
             let role = msg.guild.roles.get("431950915419897866");
             if (!person.roles.has(role)) {
                 person.addRole(role)
-                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout')
+                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
                 msg.react('✅')
             } else {
                 msg.reply(' That person already is a scout!')
@@ -57,13 +57,13 @@ client.on('message', msg => {
         } else {
             msg.reply(' You need to mention someone!')
         }
-    } else if (command.startsWith('demote')) {
+    } else if (command === 'demote') {
         if (msg.mentions.members.first() !== undefined) {
             let role = msg.guild.roles.get("431950915419897866");
             const person = msg.mentions.members.first();
             if (person.roles.has('')) {
                 person.removeRole(role)
-                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout')
+                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
                 msg.react('✅')
             } else {
                 msg.reply(' That person isnt a scout!')
