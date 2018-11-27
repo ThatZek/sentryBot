@@ -72,8 +72,9 @@ client.on('message', msg => {
             msg.reply(' You need to mention someone!')
         }
     } else if (command === 'sentry') {
-        //sentry.newsentry(args, msg)
-        msg.reply('In development stages')
+        sentry.newsentry(args, msg)
+    } else if (command === 'dead') {
+        sentry.killsentry
     }
 });
 
