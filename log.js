@@ -9,11 +9,11 @@ var verify = '437322745651396630'
 
 module.exports = {
     log: function log(type, msg, client) {
-        if (type = 'ban') {
+        if (type === 'ban') {
             client.channels.get(ban).send(msg)
-        } else if (type = 'promote') {
+        } else if (type === 'promote') {
             client.channels.get(promote).send(msg)
-        } else if (type = 'verify') {
+        } else if (type === 'verify') {
             client.channels.get(verify).send(msg)
         }
 
