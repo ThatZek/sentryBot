@@ -31,7 +31,7 @@ client.on('ready', () => {
 client.on('message', msg => {
     if (msg.content === 'verify') {
         if (!msg.member.roles.has(veriRole)) {
-            v.verify(msg.author, msg.guild, msg.member)
+            v.verify(msg.author, msg.guild, msg.member, client)
         }
         msg.delete()
     }
