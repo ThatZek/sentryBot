@@ -21,13 +21,19 @@ module.exports = {
                     color: 3447003,
                     title: 'A sentry has been found in ' + string + '!'
                 }
+            }).then(msg => {
+                currentSentry = msg.id
             })
         } else {
             msg.reply('There is already a sentry up!')
         }
     },
     killsentry: function killSentry() {
-
+        if (currentSentry !== null) return;
+        client.channels.get(output).fetchMessage(currentSentry).then(msg => {
+            msg.delete()
+        })
+        currentSentry = null
     }
 }
 
