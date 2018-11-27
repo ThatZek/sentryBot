@@ -90,6 +90,7 @@ client.on('message', msg => {
         } else {
             msg.member.removeRole(role)
         }
+        msg.react('✅')
     }
 });
 
