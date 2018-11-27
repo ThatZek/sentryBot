@@ -14,7 +14,8 @@ module.exports = {
         if (currentSentry === null) {
             let string = null;
             if (args.length !== 2) return;
-            let serverArg = args[0].toLowerCase();
+            let serverArg = args[0];
+            console.log(serverArg);
             string = server + args[0] + args[1]
             client.channels.get(output).send({
                 embed: {
