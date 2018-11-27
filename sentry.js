@@ -17,7 +17,7 @@ module.exports = {
             if (args.length !== 2) return;
             argCompute(args[0])
             string = server + ' ' + args[1]
-            client.channels.get(output).send({
+            bot.client.channels.get(output).send({
                 embed: {
                     color: 3447003,
                     title: 'A sentry has been found in ' + string + '!'
@@ -31,7 +31,7 @@ module.exports = {
     },
     killsentry: function killSentry() {
         if (currentSentry !== null) return;
-        client.channels.get(output).fetchMessage(currentSentry).then(msg => {
+        bot.client.channels.get(output).fetchMessage(currentSentry).then(msg => {
             msg.delete()
         })
         currentSentry = null
