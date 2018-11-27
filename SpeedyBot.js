@@ -12,6 +12,7 @@ module.exports = {
 }
 
 //vars
+var modRole = '431951465700130816'
 var prefix = '!';
 var output = config.output;
 var Promotelog = config.Promotelog;
@@ -43,7 +44,7 @@ client.on('message', msg => {
     const command = args.shift().toLowerCase();
     if (command === 'ping') {
         msg.reply('Pong!');
-    } else if (command === 'trial') {
+    } else if (command === 'trial' && msg.member.roles.has(modRole)) {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
             let role = msg.guild.roles.get("431950915419897866");
@@ -57,7 +58,7 @@ client.on('message', msg => {
         } else {
             msg.reply(' You need to mention someone!')
         }
-    } else if (command === 'demote') {
+    } else if (command === 'demote' && msg.member.roles.has(modRole)) {
         if (msg.mentions.members.first() !== undefined) {
             let role = null;
             const person = msg.mentions.members.first();
@@ -86,9 +87,9 @@ client.on('message', msg => {
     } else if (command === 'callouts') {
         let role = msg.guild.roles.get('491732360644132894')
         if (msg.member.roles.has('491732360644132894')) {
-            msg.member.addRole(role)
+            msg.member.addRole('491732360644132894')
         } else {
-            msg.member.removeRole(role)
+            msg.member.removeRole('491732360644132894')
         }
         msg.react('✅')
     }
