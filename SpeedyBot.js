@@ -87,7 +87,7 @@ client.on('message', msg => {
         msg.react('✅')
     } else if (command === 'callouts') {
         let role = msg.guild.roles.get(callouts)
-        if (msg.member.roles.has(callouts)) {
+        if (!msg.member.roles.has(callouts)) {
             msg.member.addRole(callouts)
         } else {
             msg.member.removeRole(callouts)
