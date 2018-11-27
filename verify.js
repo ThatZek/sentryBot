@@ -3,10 +3,9 @@ const fetch = require('node-fetch');
 const config = require("./config.json");
 const l = require('./log.js');
 const bot = require("./SpeedyBot.js")
-const client = bot.client
 
 module.exports = {
-    verify: function verify(user, server, member) {
+    verify: function verify(user, server, member, client) {
 
         let veriRole = Memberrole;
         let string = "SCUC" + Math.floor(Math.random(11111) * 99999);
@@ -32,21 +31,21 @@ module.exports = {
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>')
+                                    l.log('verify', 'Verified <@' + user + '>', client)
                                 } else if (json.description[1] = string) {
                                     collector.stop();
                                     member.addRole(server.roles.get(veriRole))
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>')
+                                    l.log('verify', 'Verified <@' + user + '>', client)
                                 } else if (json.description[2] = string) {
                                     collector.stop();
                                     member.addRole(server.roles.get(veriRole))
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>')
+                                    l.log('verify', 'Verified <@' + user + '>', client)
                                 }
                             })
                     });
