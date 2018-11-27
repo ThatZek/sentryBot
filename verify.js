@@ -7,7 +7,7 @@ const bot = require("./SpeedyBot.js")
 module.exports = {
     verify: function verify(user, server, member, client) {
 
-        let veriRole = Memberrole;
+        let veriRole = config.Memberrole;
         let string = "SCUC" + Math.floor(Math.random(11111) * 99999);
         user.send('Please put the following code ALONE in any of your realmeye description lines!')
             .then(user.send({
