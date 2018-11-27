@@ -15,7 +15,8 @@ module.exports = {
         if (currentSentry === null) {
             let string = null;
             if (args.length !== 2) return;
-            argCompute(args[0]).then(string = server + ' ' + args[1])
+            argCompute(args[0])
+            string = server + ' ' + args[1]
             client.channels.get(output).send({
                 embed: {
                     color: 3447003,
