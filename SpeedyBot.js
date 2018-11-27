@@ -49,7 +49,7 @@ client.on('message', msg => {
             let role = msg.guild.roles.get("431950915419897866");
             if (!person.roles.has(role)) {
                 person.addRole(role)
-                l.log('promotion', 'promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
+                l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
                 msg.react('✅')
             } else {
                 msg.reply(' That person already is a scout!')
@@ -64,12 +64,12 @@ client.on('message', msg => {
             if (person.roles.has('431950915419897866')) {
                 role = msg.guild.roles.get("431950915419897866");
                 person.removeRole(role)
-                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
+                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
                 msg.react('✅')
             } else if (person.roles.has('431946137071648768')) {
                 role = msg.guild.roles.get("431950915419897866");
                 person.removeRole(role)
-                l.log('promotion', 'demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
+                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
                 msg.react('✅')
             } else {
                 msg.reply(' That person isnt a scout!')

@@ -44,8 +44,8 @@ module.exports = {
                                     member.addRole(server.roles.get(veriRole))
                                     member.setNickname(username)
                                         .catch(console.error);
-                                    msg.channel.send('You are now verified!')
-                                    l.log('verify', 'Verified <@' + user + '>', client)
+                                    msg.channel.send('You are now verified! Their Realmeye: https://www.realmeye.com/player/' + username)
+                                    l.log('verify', user + ' has been successfully verified!', client)
                                 }
                             })
                     });
