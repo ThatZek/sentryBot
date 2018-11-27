@@ -3,7 +3,6 @@ const fetch = require('node-fetch');
 const config = require("./config.json");
 const l = require('./log.js');
 const bot = require("./SpeedyBot.js")
-const client = bot.client
 
 var output = config.output
 var currentSentry = null;
@@ -11,13 +10,13 @@ var server = null;
 var realm = null;
 
 module.exports = {
-    newsentry: function newSentry(args, msg) {
+    newsentry: function newSentry(args, msg, client) {
         if (currentSentry === null) {
             let string = null;
             if (args.length !== 2) return;
             argCompute(args[0])
             string = server + ' ' + args[1]
-            bot.client.channels.get(output).send({
+            client.channels.get(output).send({
                 embed: {
                     color: 3447003,
                     title: 'A sentry has been found in ' + string + '!'
@@ -29,9 +28,9 @@ module.exports = {
             msg.reply('There is already a sentry up!')
         }
     },
-    killsentry: function killSentry() {
+    killsentry: function killSentry(client) {
         if (currentSentry !== null) return;
-        bot.client.channels.get(output).fetchMessage(currentSentry).then(msg => {
+        client.channels.get(output).fetchMessage(currentSentry).then(msg => {
             msg.delete()
         })
         currentSentry = null
