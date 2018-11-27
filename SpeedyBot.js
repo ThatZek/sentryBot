@@ -35,10 +35,13 @@ client.on('message', msg => {
         }
         msg.delete()
     }
+});
+
+client.on('message', msg => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
     const args = msg.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    if (command === prefix + 'ping') {
+    if (command === 'ping') {
         msg.reply('Pong!');
     } else if (command.startsWith('trial')) {
         if (msg.mentions.members.first() !== undefined) {
