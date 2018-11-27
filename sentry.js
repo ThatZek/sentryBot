@@ -38,7 +38,7 @@ module.exports = {
 }
 
 function argCompute(serverInit) {
-    const serverArg = serverInit.toLowerCase();
+    let serverArg = serverInit.toLowerCase();
 
     //US, EU, Asia?
     if (serverArg.startsWith('us')) {
