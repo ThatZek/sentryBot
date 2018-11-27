@@ -83,6 +83,13 @@ client.on('message', msg => {
     } else if (command === 'dead') {
         sentry.killsentry(client)
         msg.react('✅')
+    } else if (command === 'callouts') {
+        let role = msg.guild.roles.get('491732360644132894')
+        if (msg.member.roles.has('491732360644132894')) {
+            msg.member.addRole(role)
+        } else {
+            msg.member.removeRole(role)
+        }
     }
 });
 
