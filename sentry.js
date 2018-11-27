@@ -14,9 +14,10 @@ module.exports = {
         if (currentSentry === null) {
             let string = null;
             if (args.length !== 2) return;
-            let serverArg = args[0];
+            let serverArg = args.shift().toLowerCase();
+            let realmArg = args.shift();
             console.log(serverArg);
-            string = server + args[0] + args[1]
+            string = serverArg + ' ' + realmArg
             client.channels.get(output).send({
                 embed: {
                     color: 3447003,
@@ -37,7 +38,3 @@ module.exports = {
         currentSentry = null
     }
 }
-
-function argCompute(serverInit) {
-    
-    }
