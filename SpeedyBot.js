@@ -13,6 +13,7 @@ module.exports = {
 
 //vars
 var modRole = '431951465700130816'
+var callouts = '491732360644132894'
 var prefix = '!';
 var output = config.output;
 var Promotelog = config.Promotelog;
@@ -85,11 +86,11 @@ client.on('message', msg => {
         sentry.killsentry(client)
         msg.react('✅')
     } else if (command === 'callouts') {
-        let role = msg.guild.roles.get('491732360644132894')
-        if (msg.member.roles.has('491732360644132894')) {
-            msg.member.addRole('491732360644132894')
+        let role = msg.guild.roles.get(callouts)
+        if (msg.member.roles.has(callouts)) {
+            msg.member.addRole(callouts)
         } else {
-            msg.member.removeRole('491732360644132894')
+            msg.member.removeRole(callouts)
         }
         msg.react('✅')
     }
