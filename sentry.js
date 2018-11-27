@@ -77,9 +77,14 @@ module.exports = {
         }
     },
     killsentry: function killSentry(client) {
-        if (currentSentry !== null) return;
+        if (currentSentry === null) return;
         client.channels.get(output).fetchMessage(currentSentry).then(msg => {
-            msg.delete()
+            msg.edit({
+                embed: {
+                    color: 3447003,
+                    title: 'This sentry has been slain!'
+                }
+            })
         })
         currentSentry = null
     }

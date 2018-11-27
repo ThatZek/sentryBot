@@ -14,6 +14,7 @@ module.exports = {
 //vars
 var modRole = '431951465700130816'
 var callouts = '491732360644132894'
+var scoutRoles = ['431950915419897866', '431946137071648768','450119310615117824'];
 var prefix = '!';
 var output = config.output;
 var Promotelog = config.Promotelog;
@@ -80,6 +81,7 @@ client.on('message', msg => {
             msg.reply(' You need to mention someone!')
         }
     } else if (command === 'sentry') {
+        if (msg.member.roles.has(scoutRoles[0]) || msg.member.roles.has(scoutRoles[1]) || msg.member.roles.has(scoutRoles[2]))
         sentry.newsentry(args, msg, client)
         msg.react('✅')
     } else if (command === 'dead') {
