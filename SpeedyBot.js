@@ -95,6 +95,38 @@ client.on('message', msg => {
             msg.member.removeRole(callouts)
         }
         msg.react('✅')
+    } else if (!message.guild) return;
+
+    // If the message content starts with "!kick"
+    if (command === 'kick') {
+        const user = message.mentions.users.first();
+        args.shift()
+        const reason = args.toString(' ')
+        // If we have a user mentioned
+        if (user) {
+            // Now we get the member from the user
+            const member = message.guild.member(user);
+            // If the member is in the guild
+            if (member) {
+                member.kick(reason).then(() => {
+                    // We let the message author know we were able to kick the person
+                    message.reply(`Successfully kicked ${user.tag}`);
+                }).catch(err => {
+                    // An error happened
+                    // This is generally due to the bot not being able to kick the member,
+                    // either due to missing permissions or role hierarchy
+                    message.reply('I was unable to kick the member');
+                    // Log the error
+                    console.error(err);
+                });
+            } else {
+                // The mentioned user isn't in this guild
+                message.reply('That user isn\'t in this server!');
+            }
+            // Otherwise, if no user was mentioned
+        } else {
+            message.reply('You didn\'t mention the user to kick!');
+        }
     }
 });
 
