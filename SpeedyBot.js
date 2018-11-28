@@ -32,7 +32,8 @@ client.on('ready', () => {
 
 //commands
 client.on('message', msg => {
-    if (msg.content === 'verify') {
+    const command = msg.content.toLowerCase();
+    if (command === 'verify') {
         if (!msg.member.roles.has(veriRole)) {
             v.verify(msg.author, msg.guild, msg.member, client)
         }
@@ -95,10 +96,7 @@ client.on('message', msg => {
             msg.member.removeRole(callouts)
         }
         msg.react('✅')
-    } else if (!msg.guild) return;
-
-    // If the message content starts with "!kick"
-    if (command === 'kick') {
+    } else if (command === 'kick') {
         const user = msg.mentions.users.first();
         args.shift()
         const reason = args.toString(' ')
@@ -114,8 +112,12 @@ client.on('message', msg => {
                     l.log('ban', {
                         embed: {
                             color: 16312092,
-                            title: msg.author + ' has kicked ' + user.tag,
-                            description: 'Reason: ' + reason
+                            title: '**Kick**',
+                            description: 'Reason: ' + reason,
+                            author: {
+                                name: msg.author.tag,
+                                icon_url: msg.author.icon_url
+                            }
                         }}, client)
                 }).catch(err => {
                     // An error happened
@@ -132,6 +134,46 @@ client.on('message', msg => {
             // Otherwise, if no user was mentioned
         } else {
             msg.reply('You didn\'t mention the user to kick!');
+        }
+    } else if (command === 'ban') {
+        const user = msg.mentions.users.first();
+        args.shift()
+        const reason = args.toString(' ')
+        // If we have a user mentioned
+        if (user) {
+            // Now we get the member from the user
+            const member = msg.guild.member(user);
+            // If the member is in the guild
+            if (member) {
+                member.ban(reason).then(() => {
+                    // We let the message author know we were able to kick the person
+                    msg.reply(`Successfully banned ${user.tag}`);
+                    l.log('ban', {
+                        embed: {
+                            color: 16312092,
+                            title: '**Ban**',
+                            description: 'Reason: ' + reason,
+                            author: {
+                                name: msg.author.tag,
+                                icon_url: msg.author.icon_url
+                            }
+                        }
+                    }, client)
+                }).catch(err => {
+                    // An error happened
+                    // This is generally due to the bot not being able to kick the member,
+                    // either due to missing permissions or role hierarchy
+                    msg.reply('I was unable to ban the member');
+                    // Log the error
+                    console.error(err);
+                });
+            } else {
+                // The mentioned user isn't in this guild
+                msg.reply('That user isn\'t in this server!');
+            }
+            // Otherwise, if no user was mentioned
+        } else {
+            msg.reply('You didn\'t mention the user to ban!');
         }
     }
 });
