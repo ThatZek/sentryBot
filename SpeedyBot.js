@@ -111,6 +111,12 @@ client.on('message', msg => {
                 member.kick(reason).then(() => {
                     // We let the message author know we were able to kick the person
                     msg.reply(`Successfully kicked ${user.tag}`);
+                    l.log('ban', {
+                        embed: {
+                            color: 16312092,
+                            title: msg.author + ' has kicked ' + user.tag,
+                            description: 'Reason: ' + reason
+                        }})
                 }).catch(err => {
                     // An error happened
                     // This is generally due to the bot not being able to kick the member,
