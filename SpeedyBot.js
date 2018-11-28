@@ -138,7 +138,7 @@ client.on('message', msg => {
                         embed: {
                             color: 16312092,
                             title: '**Kick**',
-                            description: 'Reason: ' + reason,
+                            description: 'Reason: ' + reason + '\n User: ' + user.tag,
                             author: {
                                 name: msg.author.tag,
                                 icon_url: msg.author.icon_url
@@ -168,7 +168,7 @@ client.on('message', msg => {
                         embed: {
                             color: 16312092,
                             title: '**Ban**',
-                            description: 'Reason: ' + reason,
+                            description: 'Reason: ' + reason + '\n User: ' + user.tag,
                             author: {
                                 name: msg.author.tag,
                                 icon_url: msg.author.icon_url
