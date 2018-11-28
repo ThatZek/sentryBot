@@ -3,15 +3,15 @@ const fetch = require('node-fetch');
 const config = require("./config.json");
 const l = require('./log.js');
 const bot = require("./SpeedyBot.js")
+const pubVar = require("./accrossInstance.json")
 
 var output = config.output
-var currentSentry = null;
 var server = null;
 var realm = null;
 
 module.exports = {
     newsentry: function newSentry(args, msg, client) {
-        if (currentSentry === null) {
+        if (pubVar.currentSentry === null) {
             let string = null;
             if (args.length !== 2) return;
             let serverArg = args.shift().toLowerCase();
@@ -70,15 +70,15 @@ module.exports = {
                     title: 'A sentry has been found in ' + string + '!'
                 }
             })).then(msg => {
-                currentSentry = msg.id
+                pubVar.currentSentry = msg.id
             })
         } else {
             msg.reply('There is already a sentry up!')
         }
     },
     killsentry: function killSentry(client) {
-        if (currentSentry === null) return;
-        client.channels.get(output).fetchMessage(currentSentry).then(msg => {
+        if (pubVar.currentSentry === null) return;
+        client.channels.get(output).fetchMessage(pubVar.currentSentry).then(msg => {
             msg.edit({
                 embed: {
                     color: 3447003,
@@ -86,6 +86,6 @@ module.exports = {
                 }
             })
         })
-        currentSentry = null
+        pubVar.currentSentry = null;
     }
 }

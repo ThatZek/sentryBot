@@ -50,7 +50,7 @@ client.on('message', msg => {
     } else if (command === 'trial' && msg.member.roles.has(modRole)) {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
-            let role = msg.guild.roles.get("431950915419897866");
+            let role = msg.guild.roles.get(scoutRoles[0]);
             if (!person.roles.has(role)) {
                 person.addRole(role)
                 l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
@@ -61,19 +61,46 @@ client.on('message', msg => {
         } else {
             msg.reply(' You need to mention someone!')
         }
+    } else if (command === 'promote' && msg.member.roles.has(modRole)) {
+        if (msg.mentions.members.first() !== undefined) {
+            const person = msg.mentions.members.first();
+            let role = msg.guild.roles.get(scoutRole[1]);
+            if (!person.roles.has(role) && person.roles.has(scoutRole[0])) {
+                person.addRole(role)
+                l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to scout', client)
+                msg.react('✅')
+            } else {
+                role = msg.guild.roles.get(scoutRole[2]);
+                if (!person.roles.has(role) && person.roles.has(scoutRole[1])) {
+                    person.addRole(role)
+                    l.log('promotion', 'Promoted <@' + person.id + '> to head scout', client)
+                    msg.react('✅')
+
+                } else {
+                    msg.reply('That person isn\'t a scout!')
+                }
+            }
+        } else {
+            msg.reply(' You need to mention someone!')
+        }
     } else if (command === 'demote' && msg.member.roles.has(modRole)) {
         if (msg.mentions.members.first() !== undefined) {
             let role = null;
             const person = msg.mentions.members.first();
-            if (person.roles.has('431950915419897866')) {
-                role = msg.guild.roles.get("431950915419897866");
+            if (person.roles.has(scoutRoles[0])) {
+                role = msg.guild.roles.get(scoutRoles[0]);
                 person.removeRole(role)
                 l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
                 msg.react('✅')
-            } else if (person.roles.has('431946137071648768')) {
-                role = msg.guild.roles.get("431950915419897866");
+            } else if (person.roles.has(scoutRoles[1])) {
+                role = msg.guild.roles.get(scoutROles[1]);
                 person.removeRole(role)
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
+                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from scout', client)
+                msg.react('✅')
+            } else if (person.roles.has(scoutRoles[2])) {
+                role = msg.guild.roles.get(scoutROles[2]);
+                person.removeRole(role)
+                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from head scout', client)
                 msg.react('✅')
             } else {
                 msg.reply(' That person isnt a scout!')
@@ -100,15 +127,13 @@ client.on('message', msg => {
         const user = msg.mentions.users.first();
         args.shift()
         const reason = args.toString(' ')
-        // If we have a user mentioned
         if (user) {
-            // Now we get the member from the user
             const member = msg.guild.member(user);
-            // If the member is in the guild
             if (member) {
                 member.kick(reason).then(() => {
-                    // We let the message author know we were able to kick the person
                     msg.reply(`Successfully kicked ${user.tag}`);
+                    user.send(`You have been kicked for: ${reason}`)
+
                     l.log('ban', {
                         embed: {
                             color: 16312092,
@@ -120,18 +145,12 @@ client.on('message', msg => {
                             }
                         }}, client)
                 }).catch(err => {
-                    // An error happened
-                    // This is generally due to the bot not being able to kick the member,
-                    // either due to missing permissions or role hierarchy
                     msg.reply('I was unable to kick the member');
-                    // Log the error
                     console.error(err);
                 });
             } else {
-                // The mentioned user isn't in this guild
                 msg.reply('That user isn\'t in this server!');
             }
-            // Otherwise, if no user was mentioned
         } else {
             msg.reply('You didn\'t mention the user to kick!');
         }
@@ -139,15 +158,12 @@ client.on('message', msg => {
         const user = msg.mentions.users.first();
         args.shift()
         const reason = args.toString(' ')
-        // If we have a user mentioned
         if (user) {
-            // Now we get the member from the user
             const member = msg.guild.member(user);
-            // If the member is in the guild
             if (member) {
                 member.ban(reason).then(() => {
-                    // We let the message author know we were able to kick the person
                     msg.reply(`Successfully banned ${user.tag}`);
+                    user.send(`You have been banned for: ${reason}`)
                     l.log('ban', {
                         embed: {
                             color: 16312092,
@@ -160,18 +176,12 @@ client.on('message', msg => {
                         }
                     }, client)
                 }).catch(err => {
-                    // An error happened
-                    // This is generally due to the bot not being able to kick the member,
-                    // either due to missing permissions or role hierarchy
                     msg.reply('I was unable to ban the member');
-                    // Log the error
                     console.error(err);
                 });
             } else {
-                // The mentioned user isn't in this guild
                 msg.reply('That user isn\'t in this server!');
             }
-            // Otherwise, if no user was mentioned
         } else {
             msg.reply('You didn\'t mention the user to ban!');
         }
