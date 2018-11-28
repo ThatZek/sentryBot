@@ -64,14 +64,14 @@ client.on('message', msg => {
     } else if (command === 'promote' && msg.member.roles.has(modRole)) {
         if (msg.mentions.members.first() !== undefined) {
             const person = msg.mentions.members.first();
-            let role = msg.guild.roles.get(scoutRole[1]);
-            if (!person.roles.has(role) && person.roles.has(scoutRole[0])) {
+            let role = msg.guild.roles.get(scoutRoles[1]);
+            if (!person.roles.has(role) && person.roles.has(scoutRoles[0])) {
                 person.addRole(role)
                 l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to scout', client)
                 msg.react('✅')
             } else {
                 role = msg.guild.roles.get(scoutRole[2]);
-                if (!person.roles.has(role) && person.roles.has(scoutRole[1])) {
+                if (!person.roles.has(role) && person.roles.has(scoutRoles[1])) {
                     person.addRole(role)
                     l.log('promotion', 'Promoted <@' + person.id + '> to head scout', client)
                     msg.react('✅')
