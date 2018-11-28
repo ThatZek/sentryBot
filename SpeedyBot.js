@@ -116,7 +116,7 @@ client.on('message', msg => {
                             color: 16312092,
                             title: msg.author + ' has kicked ' + user.tag,
                             description: 'Reason: ' + reason
-                        }})
+                        }}, client)
                 }).catch(err => {
                     // An error happened
                     // This is generally due to the bot not being able to kick the member,
