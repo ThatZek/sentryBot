@@ -137,7 +137,7 @@ client.on('message', msg => {
                     l.log('ban', {
                         embed: {
                             color: 16312092,
-                            title: '**Kick**',
+                            title: '**Action:** Kick',
                             description: 'Reason: ' + reason + '\n User: ' + user.tag,
                             author: {
                                 name: msg.author.tag,
@@ -167,7 +167,7 @@ client.on('message', msg => {
                     l.log('ban', {
                         embed: {
                             color: 16312092,
-                            title: '**Ban**',
+                            title: '**Action:** Ban',
                             description: 'Reason: ' + reason + '\n User: ' + user.tag,
                             author: {
                                 name: msg.author.tag,
