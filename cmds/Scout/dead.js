@@ -4,7 +4,7 @@ const config = require("../../config.json");
 const l = require('../../log.js');
 const bot = require("../../SpeedyBot.js")
 const pubVar = require("../../accrossInstance.json")
-
+const output = config.output
 
 module.exports.run = async (client, msg, args) => {
     if (pubVar.currentSentry === null) return;
