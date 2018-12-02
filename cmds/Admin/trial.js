@@ -1,10 +1,11 @@
 const Discord = require("discord.js");
 const config = require("../../config.json");
 const l = require('../../log.js')
+const scoutrole = config.scoutrole;
 
 module.exports.run = async (bot, msg, args) => {
     const member = msg.mentions.members.first();
-    const role = msg.guild.roles.get(scoutRoles[0]);
+    const role = msg.guild.roles.get(scoutrole[0]);
         if (member) {
             if (!member.roles.has(role)) {
                 member.addRole(role)
