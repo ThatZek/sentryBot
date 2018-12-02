@@ -7,7 +7,7 @@ module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
     const tscout = msg.guild.roles.get(scoutrole[0])
     const scout = msg.guild.roles.get(scoutrole[1]);
-    const hscout = msg.guild.roles.get(scoutRoles[2]);
+    const hscout = msg.guild.roles.get(scoutrole[2]);
         if (member) {
             if (member.roles.has(tscout)) {
                 member.removeRole(tscout);
