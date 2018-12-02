@@ -27,7 +27,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log('Current prefix is: ' + prefix)
     console.log('Current output chanel is:' + output)
-    bot.user.setActivity("SChronos#1155 make pretty cool art!", { type: "WATCHING" });});
+    client.user.setActivity("SChronos#1155 make pretty cool art!", { type: "WATCHING" });});
 
 //commands
 client.on('message', msg => {
