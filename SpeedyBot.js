@@ -79,7 +79,7 @@ client.on('message', msg => {
 				}
 			}
 		}
-		cmd.run(bot, msg, args);
+		cmd.run(client, msg, args);
 	}
 });
 
