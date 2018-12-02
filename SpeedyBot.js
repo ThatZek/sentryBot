@@ -5,11 +5,9 @@ const fetch = require('node-fetch')
 const config = require("./config.json")
 const v = require('./verify.js')
 const l = require('./log.js');
-const sentry = require('./sentry.js')
-
-module.exports = {
-    client: client
-}
+const sentry = require('./cmds/Scout/sentry.js')
+const dead = require('./cmds/Scout/dead.js')
+const poll = require('./poll.js')
 
 //vars
 var modRole = '431951465700130816'
@@ -21,6 +19,28 @@ var Promotelog = config.Promotelog;
 var Banlog = config.Banlog;
 var dad = '498540074049208330';
 var veriRole = '431951529847816202';
+
+client.commands = new Discord.Collection();
+
+fs.readdir("./cmds/", (err, folders) => {
+	if (err) throw err;
+
+	for (let i = 0; i < folders.length; i++) {
+		fs.readdir(`./cmds/${folders[i]}`, (e, files) => {
+			let jsfiles = files.filter(f => f.split(".").pop() === 'js');
+			if (jsfiles.length < 1) {
+				console.log(`No commands in ${folders[i]}`);
+				return;
+			}
+
+			jsfiles.forEach((file) => {
+				let properties = require(`./cmds/${folders[i]}/${file}`);
+				console.log(`Loaded ${file}`);
+				client.commands.set(properties.help.name, properties);
+			})
+		})
+	}
+})
 
 //init
 client.on('ready', () => {
@@ -109,10 +129,10 @@ client.on('message', msg => {
         }
     } else if (command === 'sentry') {
         if (msg.member.roles.has(scoutRoles[0]) || msg.member.roles.has(scoutRoles[1]) || msg.member.roles.has(scoutRoles[2]))
-        sentry.newsentry(args, msg, client)
+        sentry.run(client, msg, args)
         msg.react('✅')
     } else if (command === 'dead') {
-        sentry.killsentry(client)
+        dead.run(client, msg, args)
         msg.react('✅')
     } else if (command === 'callouts') {
         let role = msg.guild.roles.get(callouts)
@@ -184,12 +204,8 @@ client.on('message', msg => {
         } else {
             msg.reply('You didn\'t mention the user to ban!');
         }
-    }else if (command === 'setactivity' && msg.author.id === dad) {
-        config.activity[0] = args[0];
-        args.shift()
-        config.activity[1] = args.toString();
-        client.user.setActivity(config.activity[0], { type: config.activity[1] });
-        msg.reply('The activity has been updated!')
+    }else if (command === 'poll') {
+        poll.newpoll(client, msg, args)
     }
 });
 
