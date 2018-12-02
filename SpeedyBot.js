@@ -8,6 +8,7 @@ const l = require('./log.js');
 const sentry = require('./cmds/Scout/sentry.js')
 const dead = require('./cmds/Scout/dead.js')
 const poll = require('./poll.js')
+const fs = require("fs")
 
 //vars
 var modRole = '431951465700130816'
