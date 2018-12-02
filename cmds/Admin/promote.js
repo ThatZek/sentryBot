@@ -9,9 +9,9 @@ module.exports.run = async (client, msg, args) => {
     const scout = msg.guild.roles.get(scoutrole[1])
     const hscout = msg.guild.roles.get(scoutrole[2])
         if (member) {
-            if (!member.roles.has(tscout)) {
-                msg.reply('That person isn\t a scout!')
-            } else if (!member.roles.has(scout)) {
+            if (!member.roles.has(tscout.id) && !member.roles.has(scout.id)) {
+                msg.reply('That person can\'t be promoted!')
+            } else if (!member.roles.has(scout.id) && !member.roles.has(hscout.id)) {
                 member.removeRole(tscout)
                 member.addRole(scout)
                 l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to scout', client)
