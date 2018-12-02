@@ -4,13 +4,14 @@ const l = require('../../log.js')
 const scoutrole = config.scoutrole;
 
 module.exports.run = async (client, msg, args) => {
-    const member = msg.mentions.members.first();
+    const member = msg.mentions.members.first()
     const tscout = msg.guild.roles.get(scoutrole[0])
-    const scout = msg.guild.roles.get(scoutrole[1]);
-    const hscout = msg.guild.roles.get(scoutrole[2]);
+    const scout = msg.guild.roles.get(scoutrole[1])
+    const hscout = msg.guild.roles.get(scoutrole[2])
         if (member) {
-            if (!member.roles.has(tscout)) return msg.reply('That person isn\t a scout!')
-            if (!member.roles.has(scout)) {
+            if (!member.roles.has(tscout)) {
+                msg.reply('That person isn\t a scout!')
+            } else if (!member.roles.has(scout)) {
                 member.removeRole(tscout)
                 member.addRole(scout)
                 l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to scout', client)
