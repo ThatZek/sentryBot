@@ -7,8 +7,7 @@ var ban = '450059554802237461'
 var promote = '485866359289413632'
 var verify = '437322745651396630'
 
-module.exports = {
-    log: function log(type, msg, client) {
+module.exports.log = async (type, msg) => {
         if (type === 'ban') {
             client.channels.get(ban).send(msg)
         } else if (type === 'promote') {
@@ -16,6 +15,4 @@ module.exports = {
         } else if (type === 'verify') {
             client.channels.get(verify).send(msg)
         }
-
-    }
 }

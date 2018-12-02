@@ -48,166 +48,39 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log('Current prefix is: ' + prefix)
     console.log('Current output chanel is:' + output)
-    client.user.setActivity(config.activity[0], { type: config.activity[1] });});
+    client.user.setActivity('Hallmark Movies', { type: "WATCHING" });});
 
-//commands
+
 client.on('message', msg => {
-    const command = msg.content.toLowerCase();
+    const args = msg.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
     if (command === 'verify') {
         if (!msg.member.roles.has(veriRole)) {
             v.verify(msg.author, msg.guild, msg.member, client)
         }
         msg.delete()
     }
-});
-
-client.on('message', msg => {
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
-    const args = msg.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
     if (command === 'ping') {
         msg.reply('Pong!');
-    } else if (command === 'trial' && msg.member.roles.has(modRole)) {
-        if (msg.mentions.members.first() !== undefined) {
-            const person = msg.mentions.members.first();
-            let role = msg.guild.roles.get(scoutRoles[0]);
-            if (!person.roles.has(role)) {
-                person.addRole(role)
-                l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
-                msg.react('✅')
-            } else {
-                msg.reply(' That person already is a scout!')
-            }
-        } else {
-            msg.reply(' You need to mention someone!')
-        }
-    } else if (command === 'promote' && msg.member.roles.has(modRole)) {
-        if (msg.mentions.members.first() !== undefined) {
-            const person = msg.mentions.members.first();
-            let role = msg.guild.roles.get(scoutRoles[1]);
-            if (!person.roles.has(role) && person.roles.has(scoutRoles[0])) {
-                person.addRole(role)
-                l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to scout', client)
-                msg.react('✅')
-            } else {
-                role = msg.guild.roles.get(scoutRole[2]);
-                if (!person.roles.has(role) && person.roles.has(scoutRoles[1])) {
-                    person.addRole(role)
-                    l.log('promotion', 'Promoted <@' + person.id + '> to head scout', client)
-                    msg.react('✅')
-
-                } else {
-                    msg.reply('That person isn\'t a scout!')
-                }
-            }
-        } else {
-            msg.reply(' You need to mention someone!')
-        }
-    } else if (command === 'demote' && msg.member.roles.has(modRole)) {
-        if (msg.mentions.members.first() !== undefined) {
-            let role = null;
-            const person = msg.mentions.members.first();
-            if (person.roles.has(scoutRoles[0])) {
-                role = msg.guild.roles.get(scoutRoles[0]);
-                person.removeRole(role)
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client)
-                msg.react('✅')
-            } else if (person.roles.has(scoutRoles[1])) {
-                role = msg.guild.roles.get(scoutROles[1]);
-                person.removeRole(role)
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from scout', client)
-                msg.react('✅')
-            } else if (person.roles.has(scoutRoles[2])) {
-                role = msg.guild.roles.get(scoutROles[2]);
-                person.removeRole(role)
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from head scout', client)
-                msg.react('✅')
-            } else {
-                msg.reply(' That person isnt a scout!')
-            }
-        } else {
-            msg.reply(' You need to mention someone!')
-        }
-    } else if (command === 'sentry') {
-        if (msg.member.roles.has(scoutRoles[0]) || msg.member.roles.has(scoutRoles[1]) || msg.member.roles.has(scoutRoles[2]))
-        sentry.run(client, msg, args)
-        msg.react('✅')
-    } else if (command === 'dead') {
-        dead.run(client, msg, args)
-        msg.react('✅')
-    } else if (command === 'callouts') {
-        let role = msg.guild.roles.get(callouts)
-        if (!msg.member.roles.has(callouts)) {
-            msg.member.addRole(callouts)
-        } else {
-            msg.member.removeRole(callouts)
-        }
-        msg.react('✅')
-    } else if (command === 'kick') {
-        const user = msg.mentions.users.first();
-        args.shift()
-        const reason = args.toString(' ')
-        if (user) {
-            const member = msg.guild.member(user);
-            if (member) {
-                member.kick(reason).then(() => {
-                    msg.reply(`Successfully kicked ${user.tag}`);
-                    user.send(`You have been kicked for: ${reason}`)
-
-                    l.log('ban', {
-                        embed: {
-                            color: 16312092,
-                            title: '**Action:** Kick',
-                            description: 'Reason: ' + reason + '\n User: ' + user.tag,
-                            author: {
-                                name: msg.author.tag,
-                                icon_url: msg.author.icon_url
-                            }
-                        }}, client)
-                }).catch(err => {
-                    msg.reply('I was unable to kick the member');
-                    console.error(err);
-                });
-            } else {
-                msg.reply('That user isn\'t in this server!');
-            }
-        } else {
-            msg.reply('You didn\'t mention the user to kick!');
-        }
-    } else if (command === 'ban') {
-        const user = msg.mentions.users.first();
-        args.shift()
-        const reason = args.toString(' ')
-        if (user) {
-            const member = msg.guild.member(user);
-            if (member) {
-                member.ban(reason).then(() => {
-                    msg.reply(`Successfully banned ${user.tag}`);
-                    user.send(`You have been banned for: ${reason}`)
-                    l.log('ban', {
-                        embed: {
-                            color: 16312092,
-                            title: '**Action:** Ban',
-                            description: 'Reason: ' + reason + '\n User: ' + user.tag,
-                            author: {
-                                name: msg.author.tag,
-                                icon_url: msg.author.icon_url
-                            }
-                        }
-                    }, client)
-                }).catch(err => {
-                    msg.reply('I was unable to ban the member');
-                    console.error(err);
-                });
-            } else {
-                msg.reply('That user isn\'t in this server!');
-            }
-        } else {
-            msg.reply('You didn\'t mention the user to ban!');
-        }
-    }else if (command === 'poll') {
-        poll.newpoll(client, msg, args)
-    }
+    } 
+    const cmd = client.commands.get(command);
+    if (cmd) {
+		if (cmd.help.role) {
+			if (cmd.help.role === 'owner') {
+				if (msg.author.id !== msg.guild.ownerID && msg.author.id !== '340867390541922304') {
+					return msg.reply(`Only server owner can use this command.`);
+				}
+			} else {
+				const role = await msg.guild.roles.find('name', cmd.help.role);
+				const member = await msg.member;
+				if (role) {
+					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
+				}
+			}
+		}
+		cmd.run(bot, msg, args);
+	}
 });
 
 //Functions

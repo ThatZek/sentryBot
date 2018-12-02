@@ -20,5 +20,9 @@ module.exports.run = async (client, msg, args) => {
 }
 
 module.exports.help = {
-
+    name: 'dead',
+    role: config.scoutrole[0],
+    usage: '',
+    desc: `Kills the last called sentry`,
+    example: ''
 }
