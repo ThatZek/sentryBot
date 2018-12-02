@@ -10,7 +10,8 @@ var output = config.output
 module.exports.run = async (client, msg, args) => {
         if (pubVar.currentSentry === null) {
             let string = null;
-            if (args.length !== 2) return;
+			const content = msg.content;
+			const contentl = content.toLowerCase();
 			let server = contentl.split(" ").slice(1, 2).join(" ");
 			let realm = contentl.split(" ").slice(2, 3).join(" ");
 			let event = "";
