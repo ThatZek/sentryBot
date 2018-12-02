@@ -186,7 +186,8 @@ client.on('message', msg => {
         }
     }else if (command === 'setactivity' && msg.author.id === dad) {
         config.activity[0] = args[0];
-        config.activity[1] = args[1];
+        args.shift()
+        config.activity[1] = args.toString();
         client.destroy().then(() => client.login(config.token))
         msg.reply('The activity has been updated!')
     }
