@@ -3,7 +3,7 @@ const config = require("../../config.json");
 const l = require('../../log.js')
 const scoutrole = config.scoutrole;
 
-module.exports.run = async (bot, msg, args) => {
+module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
     const scout = msg.guild.roles.get(scoutrole[1]);
     const hscout = msg.guild.roles.get(scoutrole[2]);
