@@ -12,10 +12,13 @@ module.exports.run = async (client, msg, args) => {
             let string = null;
 			const content = msg.content;
 			const contentl = content.toLowerCase();
+			const commandchnl = msg.guild.channels.find('name', 'bot-commands');
+			if (msg.channel.id !== commandchnl.id) return msg.channel.send(`Go to ${commandchnl}`);
 			let server = contentl.split(" ").slice(1, 2).join(" ");
 			let realm = contentl.split(" ").slice(2, 3).join(" ");
 			let event = "";
 			let population;
+			const msgLength = content.split(" ");
 			if (msgLength.length === 6) {
 				event = contentl.split(" ").slice(3, 5).join(" ");
 				population = content.split(" ").slice(5).join(" ");
