@@ -188,7 +188,7 @@ client.on('message', msg => {
         config.activity[0] = args[0];
         args.shift()
         config.activity[1] = args.toString();
-        client.destroy().then(() => client.login(config.token))
+        client.user.setActivity(config.activity[0], { type: config.activity[1] });
         msg.reply('The activity has been updated!')
     }
 });
