@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const config = require("../../config.json");
 const l = require('../../log.js');
 const bot = require("../../SpeedyBot.js")
-const pubVar = require("./accrossInstance.json")
+const pubVar = require("../../accrossInstance.json")
 
 var output = config.output
 
