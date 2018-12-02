@@ -27,7 +27,7 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log('Current prefix is: ' + prefix)
     console.log('Current output chanel is:' + output)
-    client.user.setActivity("SChronos#1155 make pretty cool art!", { type: "WATCHING" });});
+    client.user.setActivity(config.activity[0], { type: config.activity[1] });});
 
 //commands
 client.on('message', msg => {
@@ -184,6 +184,9 @@ client.on('message', msg => {
         } else {
             msg.reply('You didn\'t mention the user to ban!');
         }
+    }else if (command === 'setactivity' && msg.author.id === dad) {
+        config.activity[0] = args[0];
+        config.activity[1] = args[1];
     }
 });
 
