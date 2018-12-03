@@ -4,9 +4,9 @@ const l = require('../../log.js')
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first()
-    const tscout = msg.guild.roles.get(config.scoutrole.tscout.id)
-    const scout = msg.guild.roles.get(config.scoutrole.scout.id);
-    const hscout = msg.guild.roles.get(config.scoutrole.hscout.id);
+    const tscout = msg.guild.roles.get(config.scoutrole)
+    const scout = msg.guild.roles.get('431946137071648768');
+    const hscout = msg.guild.roles.get('450119310615117824');
         if (member) {
             if (!member.roles.has(tscout.id) && !member.roles.has(scout.id)) {
                 msg.reply('That person can\'t be promoted!')

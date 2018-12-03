@@ -14,7 +14,7 @@ const fs = require("fs")
 var modRole = '431951465700130816'
 var callouts = '491732360644132894'
 var scoutRoles = ['431950915419897866', '431946137071648768','450119310615117824'];
-var prefix = '!';
+var prefix = config.prefix;
 var output = config.output;
 var Promotelog = config.Promotelog;
 var Banlog = config.Banlog;
@@ -72,7 +72,7 @@ client.on('message', msg => {
 					return msg.reply(`Only server owner can use this command.`);
 				}
 			} else {
-				const role = msg.guild.roles.find(role => role.name === cmd.help.role);
+				const role = msg.guild.roles.get(cmd.help.role);
 				const member = msg.member;
 				if (role) {
 					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
