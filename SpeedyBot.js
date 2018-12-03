@@ -54,7 +54,7 @@ client.on('ready', () => {
 client.on('message', msg => {
     const args = msg.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    if (command === 'verify') {
+    if (msg.content === 'verify') {
         if (!msg.member.roles.has(veriRole)) {
             v.verify(msg.author, msg.guild, msg.member, client)
         }
