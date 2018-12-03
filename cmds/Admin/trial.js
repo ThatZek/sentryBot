@@ -9,7 +9,7 @@ module.exports.run = async (client, msg, args) => {
 	const trialRole = msg.guild.roles.find('name', 'Trial Scout');
 	if (scouter.roles.exists('name', trialRole.name)) return msg.reply(`${scouter} already has the Trial Scout role`);
 	scouter.addRole(trialRole);
-	msg.react(`👍`);
+	msg.react(`✅`);
 	msg.guild.channels.get('485866359289413632').send(`${scouter} has been promoted to Trial Scout`);
 }
 
