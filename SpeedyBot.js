@@ -5,8 +5,6 @@ const fetch = require('node-fetch')
 const config = require("./config.json")
 const v = require('./verify.js')
 const l = require('./log.js');
-const sentry = require('./cmds/Scout/sentry.js')
-const dead = require('./cmds/Scout/dead.js')
 const poll = require('./poll.js')
 const fs = require("fs")
 

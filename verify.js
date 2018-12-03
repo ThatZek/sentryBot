@@ -8,6 +8,7 @@ module.exports = {
     verify: function verify(user, server, member, client) {
 
         const veriRole = server.roles.get(config.member);
+        console.log(veriRole)
         let string = "SCUC" + Math.floor(Math.random(11111) * 99999);
         user.send('Please put the following code ALONE in any of your realmeye description lines!')
             .then(user.send({
@@ -41,7 +42,7 @@ module.exports = {
                                     l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
                                 } else if (json.description[2] = string) {
                                     collector.stop();
-                                    member.addRole(server.roles.get(veriRole))
+                                    member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
