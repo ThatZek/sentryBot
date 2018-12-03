@@ -28,14 +28,14 @@ module.exports = {
                             .then(json => {
                                 if (json.description[0] = string) {
                                     collector.stop();
-                                    member.addRole(server.roles.get(veriRole))
+                                    member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
                                     l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
                                 } else if (json.description[1] = string) {
                                     collector.stop();
-                                    member.addRole(server.roles.get(veriRole))
+                                    member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
