@@ -72,7 +72,7 @@ client.on('message', msg => {
 					return msg.reply(`Only server owner can use this command.`);
 				}
 			} else {
-				const role = msg.guild.roles.find('name', cmd.help.role);
+				const role = message.guild.roles.find(role => role.name === cmd.help.role);
 				const member = msg.member;
 				if (role) {
 					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
