@@ -45,6 +45,7 @@ fs.readdir("./cmds/", (err, folders) => {
 
 //init
 client.on('ready', () => {
+    console.log(config)
     console.log(`Logged in as ${client.user.tag}!`);
     console.log('Current prefix is: ' + prefix)
     console.log('Current output chanel is:' + output)
