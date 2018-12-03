@@ -7,8 +7,8 @@ module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
     const role = msg.guild.roles.get(config.scoutrole.tscout.id);
         if (member) {
-            if (!member.roles.has(role)) {
-                member.addRole(role)
+            if (!member.roles.has(role.id)) {
+                member.addRole(role.id)
                 l.log('promotion', 'Promoted <@' + msg.mentions.users.first().id + '> to trial scout', client)
                 return msg.react('✅');
             } else {
