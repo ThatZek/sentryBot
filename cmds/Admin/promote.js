@@ -4,7 +4,7 @@ const l = require('../../log.js')
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first()
-    const tscout = msg.guild.roles.get(config.scoutrole)
+    const tscout = msg.guild.roles.get(config.scoutrole);
     const scout = msg.guild.roles.get('431946137071648768');
     const hscout = msg.guild.roles.get('450119310615117824');
         if (member) {

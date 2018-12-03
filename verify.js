@@ -8,7 +8,6 @@ module.exports = {
     verify: function verify(user, server, member, client) {
 
         const veriRole = server.roles.get(config.member);
-        console.log(veriRole)
         let string = "SCUC" + Math.floor(Math.random(11111) * 99999);
         user.send('Please put the following code ALONE in any of your realmeye description lines!')
             .then(user.send({
