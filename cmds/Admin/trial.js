@@ -5,7 +5,7 @@ const scoutrole = config.scoutrole;
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
-    const role = msg.guild.roles.get(config.scoutrole.tscout.id);
+    const role = msg.guild.roles.find('name', 'Trial Scout');
         if (member) {
             if (!member.roles.has(role.id)) {
                 member.addRole(role.id)
