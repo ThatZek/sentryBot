@@ -1,13 +1,12 @@
 const Discord = require("discord.js");
 const config = require("../../config.json");
 const l = require('../../log.js')
-const scoutrole = config.scoutrole;
+const tscout = msg.guild.roles.get(config.scoutrole.tscout.id)
+const scout = msg.guild.roles.get(config.scoutrole.scout.id);
+const hscout = msg.guild.roles.get(config.scoutrole.hscout.id);
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first()
-    const tscout = msg.guild.roles.get(scoutrole.tscout.id)
-    const scout = msg.guild.roles.get(scoutrole.scout.id)
-    const hscout = msg.guild.roles.get(scoutrole.hscout.id)
         if (member) {
             if (!member.roles.has(tscout.id) && !member.roles.has(scout.id)) {
                 msg.reply('That person can\'t be promoted!')

@@ -1,13 +1,12 @@
 const Discord = require("discord.js");
 const config = require("../../config.json");
 const l = require('../../log.js')
-const scoutrole = config.scoutrole;
+const tscout = msg.guild.roles.get(config.scoutrole.tscout.id)
+const scout = msg.guild.roles.get(config.scoutrole.scout.id);
+const hscout = msg.guild.roles.get(config.scoutrole.hscout.id);
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
-    const tscout = msg.guild.roles.get(scoutrole[0])
-    const scout = msg.guild.roles.get(scoutrole[1]);
-    const hscout = msg.guild.roles.get(scoutrole[2]);
         if (member) {
             if (member.roles.has(tscout)) {
                 member.removeRole(tscout);
