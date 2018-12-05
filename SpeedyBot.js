@@ -5,7 +5,6 @@ const fetch = require('node-fetch')
 const config = require("./config.json")
 const v = require('./verify.js')
 const l = require('./log.js');
-const poll = require('./poll.js')
 const fs = require("fs")
 
 //vars
