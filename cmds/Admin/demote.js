@@ -1,26 +1,23 @@
 const Discord = require("discord.js");
 const config = require("../../config.json");
-const l = require('../../log.js')
 
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first();
-    const tscout = msg.guild.roles.get(config.scoutrole.tscout.id)
-    const scout = msg.guild.roles.get(config.scoutrole.scout.id);
-    const hscout = msg.guild.roles.get(config.scoutrole.hscout.id);
+    const tscout = msg.guild.roles.get(config.scoutrole)
+    const scout = msg.guild.roles.get('431946137071648768');
+    const hscout = msg.guild.roles.get('450119310615117824');
         if (member) {
             if (member.roles.has(tscout)) {
                 member.removeRole(tscout);
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from trial scout', client);
+                msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Trial Scout`);
             }else if (member.roles.has(scout)) {
                 member.removeRole(scout);
                 member.addRole(tscout)
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from scout', client);
-                return msg.react('✅');
+                msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Official Scout`);
             } else if (member.roles.has(hscout)){
                 member.removeRole(hscout);
                 member.addRole(scout);
-                l.log('promotion', 'Demoted <@' + msg.mentions.users.first().id + '> from head scout', client);
-                return msg.react('✅');
+                msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Head Scout`);
             }else {
                 return msg.reply('That person can\'t be demoted!');
             }

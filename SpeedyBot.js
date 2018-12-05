@@ -80,7 +80,8 @@ client.on('message', msg => {
 				}
 			}
 		}
-		cmd.run(client, msg, args);
+        cmd.run(client, msg, args);
+        msg.react('✅');
 	}
 });
 
