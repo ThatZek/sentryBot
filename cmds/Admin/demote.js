@@ -8,13 +8,13 @@ module.exports.run = async (client, msg, args) => {
     const hscout = msg.guild.roles.get('450119310615117824');
         if (member) {
             if (member.roles.has(tscout)) {
-                member.removeRole(tscout);
+                member.removeRole(tscout.id);
                 msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Trial Scout`);
-            }else if (member.roles.has(scout)) {
+            }else if (member.roles.has(scout.id)) {
                 member.removeRole(scout);
                 member.addRole(tscout)
                 msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Official Scout`);
-            } else if (member.roles.has(hscout)){
+            } else if (member.roles.has(hscout.id)){
                 member.removeRole(hscout);
                 member.addRole(scout);
                 msg.guild.channels.get('485866359289413632').send(`${member} has been demoted from Head Scout`);
