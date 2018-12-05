@@ -12,7 +12,7 @@ module.exports.run = async (client, msg, args) => {
         msg.delete()
         })
     killcount = pubVar.killcount;
-    pubVar.killcount = killcount.parseInt() + 1;
+    pubVar.killcount = parseInt(killcount, 10) + 1;
     savepubVar();
     const cloak = bot.emojis.get('431954264785682443');
     const sentry = bot.emojis.get('431954057691791372');
