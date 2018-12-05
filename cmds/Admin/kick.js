@@ -12,17 +12,18 @@ if (user) {
         member.kick(reason).then(() => {
             msg.reply(`Successfully kicked ${user.tag}`);
             user.send(`You have been kicked for: ${reason}`)
-
-            l.log('ban', {
+            //16312092
+            client.channels.get('450059554802237461').send({
                 embed: {
-                    color: 16312092,
-                    title: '**Action:** Kick',
-                    description: 'Reason: ' + reason + '\n User: ' + user.tag,
-                    author: {
-                        name: msg.author.tag,
-                        icon_url: msg.author.icon_url
-                    }
-                }}, client)
+                color: 16312092,
+                title: '**Action:** Kick',
+                description: 'Reason: ' + reason + '\n User: ' + user.tag,
+                author: {
+                    name: msg.author.tag,
+                    icon_url: msg.author.icon_url
+                }
+            }
+        })
         }).catch(err => {
             msg.reply('I was unable to kick the member');
             console.error(err);
@@ -36,7 +37,7 @@ if (user) {
 }
 
 module.exports.help = {
-    name: 'ban',
+    name: 'kick',
     role: config.modrole,
     usage: '`User`',
     desc: `bans mentioned user`,

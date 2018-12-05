@@ -12,17 +12,17 @@ module.exports.run = async (client, msg, args) => {
                 member.ban(reason).then(() => {
                     msg.reply(`Successfully banned ${user.tag}`);
                     user.send(`You have been banned for: ${reason}`)
-                    l.log('ban', {
+                    client.channels.get('450059554802237461').send({
                         embed: {
-                            color: 16312092,
-                            title: '**Action:** Ban',
-                            description: 'Reason: ' + reason + '\n User: ' + user.tag,
-                            author: {
-                                name: msg.author.tag,
-                                icon_url: msg.author.icon_url
-                            }
+                        color: 16312092,
+                        title: '**Action:** Ban',
+                        description: 'Reason: ' + reason + '\n User: ' + user.tag,
+                        author: {
+                            name: msg.author.tag,
+                            icon_url: msg.author.icon_url
                         }
-                    }, client)
+                    }
+                })
                 }).catch(err => {
                     msg.reply('I was unable to ban the member');
                     console.error(err);
@@ -36,7 +36,7 @@ module.exports.run = async (client, msg, args) => {
 }
 
 module.exports.help = {
-    name: 'kick',
+    name: 'ban',
     role: config.modrole,
     usage: '`User`',
     desc: `kicks mentioned user`,
