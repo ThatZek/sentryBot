@@ -6,12 +6,11 @@ module.exports.run = async (client, msg, args) => {
 	const trialRole = msg.guild.roles.get(config.scoutrole);
 	if (scouter.roles.has(trialRole.id)) return msg.reply(`${scouter.name} already has the scouter role!`)
 	scouter.addRole(trialRole);
-	msg.react(`✅`);
 	msg.guild.channels.get('485866359289413632').send(`${scouter} has been promoted to Trial Scout`);
 }
 
 module.exports.help = {
-    name: 'promote',
+    name: 'trial',
     role: config.modrole,
     usage: '`User`',
     desc: `Promotes mentioned user`,

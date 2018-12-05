@@ -5,6 +5,7 @@ module.exports.run = async (client, msg, args) => {
     const outputChannel = client.channels.get(msg.channels)
     outputChannel.send(sentence)
     console.log(msg.author.name + ' printed: ' + sentence)
+    msg.delete();
 }
 
 module.exports.help = {
