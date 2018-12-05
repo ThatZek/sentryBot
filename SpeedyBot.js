@@ -72,7 +72,7 @@ client.on('message', msg => {
 				}
 			} else {
                 const role = msg.guild.roles.get(cmd.help.role);
-                console.log('role')
+                console.log(role)
 				const member = msg.member;
 				if (role) {
 					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
