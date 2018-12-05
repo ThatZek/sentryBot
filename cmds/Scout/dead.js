@@ -13,8 +13,8 @@ module.exports.run = async (client, msg, args) => {
         })
     killcount = pubVar.killcount;
     pubVar.killcount = parseInt(killcount, 10) + 1;
-    const cloak = bot.emojis.get('431954264785682443');
-    const sentry = bot.emojis.get('431954057691791372');
+    const cloak = client.emojis.get('431954264785682443');
+    const sentry = client.emojis.get('431954057691791372');
     const red = Math.floor(Math.random() * 255);
     const green = Math.floor(Math.random() * 255);
     const blue = Math.floor(Math.random() * 255);
