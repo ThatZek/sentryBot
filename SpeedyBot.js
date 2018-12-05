@@ -19,7 +19,7 @@ var Banlog = config.Banlog;
 var dad = '498540074049208330';
 var veriRole = '431951529847816202';
 
-bot.commands = new Discord.Collection();
+client.commands = new Discord.Collection();
 
 fs.readdir("./cmds/", (err, folders) => {
 	if (err) throw err;
