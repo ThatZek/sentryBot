@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require('../../config.json')
 
 module.exports.run = async (client, msg, args) => {
-    const sentence = args.toString().join(" ");
+    const sentence = args.join(" ");
     msg.channel.send(sentence)
     console.log(msg.author.name + ' printed: ' + sentence)
     msg.delete();
