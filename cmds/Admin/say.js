@@ -3,8 +3,7 @@ const config = require('../../config.json')
 
 module.exports.run = async (client, msg, args) => {
     const sentence = args.toString();
-    const outputChannel = client.channels.get(msg.channels)
-    outputChannel.send(sentence)
+    msg.channel.send(sentence)
     console.log(msg.author.name + ' printed: ' + sentence)
     msg.delete();
 }
