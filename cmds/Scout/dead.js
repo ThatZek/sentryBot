@@ -11,8 +11,8 @@ module.exports.run = async (client, msg, args) => {
     client.channels.get(output).fetchMessage(pubVar.currentSentry).then(msg => {
         msg.delete()
         })
-    killcount = pubVar.killcount.parseInt();
-    pubVar.killcount = killcount + 1;
+    killcount = pubVar.killcount;
+    pubVar.killcount = killcount.parseInt() + 1;
     savepubVar();
     const cloak = bot.emojis.get('431954264785682443');
     const sentry = bot.emojis.get('431954057691791372');
