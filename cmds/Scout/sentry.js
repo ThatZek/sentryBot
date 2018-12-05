@@ -98,7 +98,7 @@ module.exports.run = async (client, msg, args) => {
 	
 	module.exports.help = {
 		name: 'sentry',
-		role: config.scoutrole[0],
+		role: config.scoutrole,
 		usage: '`Server` `Realm` `Event?` `Population` ',
 		desc: `Calls out a sentry.`,
 		example: 'use2 beh cyclops 52'
