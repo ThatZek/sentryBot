@@ -21,14 +21,13 @@ module.exports.run = async (client, msg, args) => {
 
 
     const countMsg = new Discord.RichEmbed()
-        .setAuthor(`Sentry Clean-Up Crew`, bot.user.avatarURL)
+        .setAuthor(`Sentry Clean-Up Crew`, client.user.avatarURL)
         .setFooter(`Created by That "One" Turtle#1123`)
         .setThumbnail(msg.guild.iconURL)
         .setTimestamp(new Date(Date.now()))
         .setURL('https://discord.gg/x82h6wr')
-        .addField(`**Sentries Killed:** ${sentry}:`, `${config.killcount}`)
-        .addField(`**Cloaks Dropped:** ${cloak}:`, `${config.cloaks}`)
-        .addField(`**Most Calls:**`, `${sentry} ${mostCallerMember} ${sentry}: **${mostCalls}**`)
+        .addField(`**Sentries Killed:** ${sentry}:`, `${pubVar.killcount}`)
+        .addField(`**Cloaks Dropped:** ${cloak}:`, `${pubVar.cloaks}`)
         .setColor([red, green, blue]);
     client.channels.get(output).fetchMessage(config.statsmsg).then(msg => {
         msg.edit(countMsg);
