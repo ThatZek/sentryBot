@@ -81,7 +81,7 @@ client.on('message', msg => {
 			}
 		}
         cmd.run(client, msg, args);
-        msg.react('✅').catch(err);
+        msg.react('✅').catch(error);
 	}
 });
 
