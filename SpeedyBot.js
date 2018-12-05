@@ -19,7 +19,7 @@ var Banlog = config.Banlog;
 var dad = '498540074049208330';
 var veriRole = '431951529847816202';
 
-client.commands = new Discord.Collection();
+bot.commands = new Discord.Collection();
 
 fs.readdir("./cmds/", (err, folders) => {
 	if (err) throw err;
@@ -35,7 +35,7 @@ fs.readdir("./cmds/", (err, folders) => {
 			jsfiles.forEach((file) => {
 				let properties = require(`./cmds/${folders[i]}/${file}`);
 				console.log(`Loaded ${file}`);
-				client.commands.set(properties.help.name, properties);
+				bot.commands.set(properties.help.name, properties);
 			})
 		})
 	}
@@ -47,7 +47,8 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log('Current prefix is: ' + prefix)
     console.log('Current output chanel is:' + output)
-    client.user.setActivity('Hallmark Movies', { type: "WATCHING" });});
+    client.user.setActivity('Hallmark Movies', { type: "WATCHING" });
+});
 
 
 client.on('message', msg => {
