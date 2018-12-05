@@ -33,7 +33,8 @@ fs.readdir("./cmds/", (err, folders) => {
 			}
 
 			jsfiles.forEach((file) => {
-				let properties = require(`./cmds/${folders[i]}/${file}`);
+                let properties = require(`./cmds/${folders[i]}/${file}`);
+                console.log(properties)
 				console.log(`Loaded ${file}`);
 				client.commands.set(properties.help.name, properties);
 			})
