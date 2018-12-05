@@ -35,7 +35,7 @@ fs.readdir("./cmds/", (err, folders) => {
 			jsfiles.forEach((file) => {
 				let properties = require(`./cmds/${folders[i]}/${file}`);
 				console.log(`Loaded ${file}`);
-				bot.commands.set(properties.help.name, properties);
+				client.commands.set(properties.help.name, properties);
 			})
 		})
 	}
