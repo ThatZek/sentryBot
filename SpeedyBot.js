@@ -33,7 +33,6 @@ fs.readdir("./cmds/", (err, folders) => {
 
 			jsfiles.forEach((file) => {
                 let properties = require(`./cmds/${folders[i]}/${file}`);
-                console.log(properties)
 				console.log(`Loaded ${file}`);
 				client.commands.set(properties.help.name, properties);
 			})
@@ -72,7 +71,8 @@ client.on('message', msg => {
 					return msg.reply(`Only server owner can use this command.`);
 				}
 			} else {
-				const role = msg.guild.roles.get(cmd.help.role);
+                const role = msg.guild.roles.get(cmd.help.role);
+                console.log('role')
 				const member = msg.member;
 				if (role) {
 					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
