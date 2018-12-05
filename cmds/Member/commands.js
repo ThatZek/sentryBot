@@ -8,7 +8,7 @@ module.exports.run = async (client, msg, args) => {
             }
 
             value = value.help;
-            const role = msg.guild.roles.find('name', value.role);
+            const role = msg.guild.roles.get(value.role);
 
             if (role) {
                 if (role.position <= member.highestRole.position) {
