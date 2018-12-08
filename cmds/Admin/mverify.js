@@ -4,6 +4,7 @@ const discord = require("discord.js")
 module.exports.run = async (client, msg, args) => {
     const member = msg.mentions.members.first()
     const user = msg.mentions.users.first()
+    const veriRole = server.roles.get(config.member);
     const username = args[1];
     member.addRole(veriRole)
     member.setNickname(username).catch(console.error);
