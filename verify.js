@@ -20,7 +20,7 @@ module.exports = {
                 )).then(message => {
                     const collector = new Discord.MessageCollector(message.channel, m => m.author.id === user.id);
                     collector.on('collect', msg => {
-                        let username = msg.content.trim()
+                        let username = msg.content
                         msg.channel.send("I will now finish the verification process!");
                         fetch('http://www.tiffit.net/RealmInfo/api/user?u=' + username + '&f=c')
                             .then(res => res.json())
