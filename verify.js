@@ -25,21 +25,21 @@ module.exports = {
                         fetch('http://www.tiffit.net/RealmInfo/api/user?u=' + username + '&f=c')
                             .then(res => res.json())
                             .then(json => {
-                                if (json.description[0] = string) {
+                                if (json.description[0] === string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
                                     veriLog(user, client)
-                                } else if (json.description[1] = string) {
+                                } else if (json.description[1] === string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
                                     veriLog(user, client)                                
-                                } else if (json.description[2] = string) {
+                                } else if (json.description[2] === string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
