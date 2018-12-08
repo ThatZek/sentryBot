@@ -45,7 +45,7 @@ module.exports = {
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    veriLog(user,, username, client)
+                                    veriLog(user, username, client)
                                 } else {
                                     return veriErr(user, username, client);
                                 }
