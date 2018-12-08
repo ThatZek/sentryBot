@@ -53,13 +53,13 @@ module.exports = {
                     });
                 }
                 )
-
-                function veriLog(user, client) {
-                    client.channels.get('437322745651396630').send(user + ' was verified successfully! Their Realmeye: https://www.realmeye.com/player/' + username)
-                }
-
-                function veriErr(user, client) {
-                    client.channels.get('437322745651396630').send(user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username)
-                }
     }
+}
+
+function veriLog(user, client) {
+    client.channels.get('437322745651396630').send(user + ' was verified successfully! Their Realmeye: https://www.realmeye.com/player/' + username)
+}
+
+function veriErr(user, client) {
+    client.channels.get('437322745651396630').send(user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username)
 }
