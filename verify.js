@@ -47,7 +47,7 @@ module.exports = {
                                     msg.channel.send('You are now verified!')
                                     veriLog(user, client)
                                 } else {
-
+                                    return veriErr(user, client);
                                 }
                             })
                     });
