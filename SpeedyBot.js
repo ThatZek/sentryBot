@@ -76,7 +76,7 @@ client.on('message', msg => {
                 const member = msg.member;
                 //console.log(member.highestRole.position)
 				if (role) {
-					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${cmd.help.role} role`);
+					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${role} role`);
 				}
 			}
 		}
