@@ -31,27 +31,35 @@ module.exports = {
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
+                                    veriLog(user, client)
                                 } else if (json.description[1] = string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
+                                    veriLog(user, client)                                
                                 } else if (json.description[2] = string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    l.log('verify', user + ' has been successfully verified! Their Realmeye: https://www.realmeye.com/player/' + username, client)
+                                    veriLog(user, client)
                                 } else {
-                                    l.log('verify', user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username, client)
+
                                 }
                             })
                     });
                 }
                 )
+
+                function veriLog(user, client) {
+                    client.channels.get('437322745651396630').send(user + ' was verified successfully! Their Realmeye: https://www.realmeye.com/player/' + username)
+                }
+
+                function veriErr(user, client) {
+                    client.channels.get('437322745651396630').send(user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username)
+                }
     }
 }
