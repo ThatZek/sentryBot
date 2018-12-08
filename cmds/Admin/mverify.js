@@ -9,7 +9,7 @@ module.exports.run = async (client, msg, args) => {
     member.addRole(veriRole)
     member.setNickname(username).catch(console.error);
     msg.channel.send('Manually Verified ' + user)
-    veriLog(user, client)
+    veriLog(user, username, client)
 }
 
 module.exports.help = {
@@ -20,6 +20,6 @@ module.exports.help = {
     example: '@That "One" Turtle#1123 Zekhersas'
 }
 
-function veriLog(user, client) {
+function veriLog(user, username, client) {
     client.channels.get('437322745651396630').send(user + ' was manually verified! Their Realmeye: https://www.realmeye.com/player/' + username)
 }

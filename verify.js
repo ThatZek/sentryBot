@@ -31,23 +31,23 @@ module.exports = {
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    veriLog(user, client)
+                                    veriLog(user, username, client)
                                 } else if (json.description[1] === string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    veriLog(user, client)                                
+                                    veriLog(user, username, client)                                
                                 } else if (json.description[2] === string) {
                                     collector.stop();
                                     member.addRole(veriRole)
                                     member.setNickname(username)
                                         .catch(console.error);
                                     msg.channel.send('You are now verified!')
-                                    veriLog(user, client)
+                                    veriLog(user,, username, client)
                                 } else {
-                                    return veriErr(user, client);
+                                    return veriErr(user, username, client);
                                 }
                             })
                     });
@@ -56,10 +56,10 @@ module.exports = {
     }
 }
 
-function veriLog(user, client) {
+function veriLog(user, username, client) {
     client.channels.get('437322745651396630').send(user + ' was verified successfully! Their Realmeye: https://www.realmeye.com/player/' + username)
 }
 
-function veriErr(user, client) {
+function veriErr(user, username, client) {
     client.channels.get('437322745651396630').send(user + ' was verified unsuccessfully! Their Realmeye: https://www.realmeye.com/player/' + username)
 }
