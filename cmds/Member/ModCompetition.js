@@ -13,6 +13,6 @@ module.exports.run = async (client, msg, args) => {
 }
 
 module.exports.help = {
-name: '62013'
-role: config.memberrole;
+name: '62013',
+role: config.memberrole
 }
