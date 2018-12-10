@@ -14,5 +14,5 @@ module.exports.run = async (client, msg, args) => {
 
 module.exports.help = {
 name = '62013'
-role = ''
+role = config.memberrole;
 }
