@@ -1,4 +1,4 @@
-const Discord = require(discord.js)
+const Discord = require('discord.js')
 const config = require("../../config.json")
 module.exports.run = async (client, msg, args) => {
   if (args[0] === config.modcomp[0] && args[1] === config.modcomp[1] && args[2] === config.modcomp[2]) {
