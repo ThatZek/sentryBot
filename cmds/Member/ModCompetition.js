@@ -9,7 +9,7 @@ module.exports.run = async (client, msg, args) => {
   }else {
     msg.reply('Your guess was incorrect')
     msg.delete();
-  {
+  }
 }
 
 module.exports.help = {
