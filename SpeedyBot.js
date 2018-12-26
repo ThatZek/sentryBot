@@ -55,14 +55,12 @@ client.on('message', msg => {
     const command = args.shift().toLowerCase();
     if (msg.content === 'verify') {
         if (!msg.member.roles.has(veriRole)) {
-            v.verify(msg.author, msg.guild, msg.member, client)
+           return v.verify(msg.author, msg.guild, msg.member, client)
         }
         msg.delete()
     }
     if (!msg.content.startsWith(prefix) || msg.author.bot) return;
-    if (command === 'ping') {
-        msg.reply('Pong!');
-    } 
+    if (command === 'ping') return msg.reply('Pong!'); 
     const cmd = client.commands.get(command);
     if (cmd) {
 		if (cmd.help.role) {
@@ -76,7 +74,7 @@ client.on('message', msg => {
                 const member = msg.member;
                 //console.log(member.highestRole.position)
 				if (role) {
-					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${role} role`);
+					if (role.position > member.highestRole.position) return msg.reply(`You cannot use this command as you do not have the ${role.name} role`);
 				}
 			}
 		}

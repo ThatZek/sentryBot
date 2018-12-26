@@ -6,6 +6,8 @@ const bot = require("../../SpeedyBot.js")
 const pubVar = require("../../accrossInstance.json")
 
 var output = config.output
+const servers = [];
+const realms = [];
 
 module.exports.run = async (client, msg, args) => {
         if (pubVar.currentSentry === null) {
@@ -34,6 +36,7 @@ module.exports.run = async (client, msg, args) => {
 			population = Number(population);
 			let goodserver = false;
 			let theserver;
+			let therealm;
             if (server == "usw3")
 				theserver = "USWest3";
 			else if (server == "usw2")
@@ -80,9 +83,15 @@ module.exports.run = async (client, msg, args) => {
 				theserver = "AsiaEast";
 			else if (server == "aus" || server == "au")
 				theserver = "Australia";
+			else theserver = server;
 
             console.log(theserver);
-            string = theserver + ' ' + realm
+		if (realm === "med")
+			therealm = "Medusa";
+		else if (realm === "Beh")
+			therealm = "Beholder";
+		else therealm = realm
+            string = theserver + ' ' + therealm
             client.channels.get(output).send('<@&491732360644132894>').then(msg => msg.edit({
                 embed: {
                     color: 3447003,
